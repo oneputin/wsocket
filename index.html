@@ -53,11 +53,13 @@
       <web-socket id="ws"
                   url="ws://echo.websocket.org"
                   auto
-                  on-open="_onOpen"
+                  on-open="_onOpen" 
+                  on-close="_onClose"
                   on-message="_onMessage">
       </web-socket>
+
       <paper-card heading="web-socket demo">
-        <div status$="[[status]]">[[status]]</div>
+        <div status$="[[status]]" on-tap="toggle">[[status]]</div>
         <div class="card-content">
           <p>This WebSocket server echoes back everything you throw at it.</p>
           <template is="dom-repeat" items="[[messages]]">
@@ -69,6 +71,7 @@
           </div>
         </div>
       </paper-card>
+
     </template>
     <script>
       var scope = document.querySelector('template[is=dom-bind]');
@@ -82,8 +85,20 @@
         scope.$.message.focus();
       }
 
+      scope.toggle = function () {
+        var status = this.get('status'); console.log("toggling from", status);
+        if (status==="connected") {
+          scope.$.ws.close();  //alert('disconnecting socket');
+        } else {
+          scope.$.ws.open();  //alert('connecting socket');
+        }  
+      }
+
       scope._onOpen = function () {
         scope.set('status', 'connected');
+      };
+      scope._onClose = function () {
+        scope.set('status', 'disconnected');
       };
 
       scope._onMessage = function (event) {
