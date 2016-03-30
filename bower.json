@@ -1,0 +1,22 @@
+{
+  "name": "web-socket-demo",
+  "version": "0.0.1",
+  "authors": [
+    "wgp>"
+  ],
+  "description": "A Polymer element app",
+  "keywords": [
+    "polymer",
+    "web-component",
+    "web-socket"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "paper-input": "PolymerElements/paper-input#~1.1.2",
+    "paper-button": "PolymerElements/paper-button#~1.0.10",
+    "paper-card": "PolymerElements/paper-card#~1.0.8",
+    "web-socket": "*"
+  }
+}
